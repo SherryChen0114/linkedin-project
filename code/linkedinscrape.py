@@ -177,7 +177,6 @@ account = ""
 key = ""
 log_in(driver,account,key)
 
-#搜索岗位
 job_list = ["consulting","data scientist","business analyst","data analyst","marketing","sales","researcher","risk analyst"]
 for job in job_list:
     page = 1
