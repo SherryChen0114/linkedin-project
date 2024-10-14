@@ -1,16 +1,13 @@
 import requests
 import pandas as pd
 from lxml import etree
-from bs4 import BeautifulSoup
-import random
 import csv
 import os
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-import time
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.support.ui import WebDriverWait
@@ -32,7 +29,7 @@ def log_in(driver,account,key):
     account_keys = driver.find_element(By.CSS_SELECTOR, "input[name='session_password']")
     account_keys.send_keys(key)
     driver.find_element(By.CSS_SELECTOR, "#organic-div > form > div.login__form_action_container > button").click()
-    time.sleep(60)
+    time.sleep(40)
     return None
 
 def search_jobs(driver,job):
@@ -85,6 +82,24 @@ def get_job_skills_salary(driver,job_element):
         )
         time.sleep(3)
         skills_elements = driver.find_elements(By.XPATH, '//ul[@class="job-details-skill-match-status-list"]/li/div/div[2]')
+        if len(skills_elements) ==0:
+            close_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[aria-label="Dismiss"]')))
+            close_button.click()
+            time.sleep(1)
+            clickable_element = job_element.find_element(By.XPATH, './ancestor::span')
+            clickable_element.click()
+            time.sleep(2)
+            shortskill = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "button > a[class^='app-aware-link']")))
+            shortskill.click()
+            time.sleep(2)
+            driver.find_element(By.CSS_SELECTOR, "section[class^='ph5']>div>button>span[class='artdeco-button__text']").click()
+        
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, '//div[contains(@class, "artdeco-modal__content ember-view job-details-skill-match-modal__container")]')))
+            time.sleep(3)
+            skills_elements = driver.find_elements(By.XPATH, '//ul[@class="job-details-skill-match-status-list"]/li/div/div[2]')
             
         for skill in skills_elements:
             skills.append(skill.text)
@@ -99,9 +114,10 @@ def get_job_skills_salary(driver,job_element):
         print(f"Error: {e}")
     return skills, job_salary
 
-def write_csv(data,job,header):
+def write_csv(data, job, header, path):
     data.insert(loc=0, column='search_key', value=job)
-    data.to_csv('{}.csv'.format(job), mode='a+', index=False, header=header,sep=',')
+    file_path = os.path.join(path, "{}.csv".format(job))
+    data.to_csv(file_path, mode='a+', index=False, header=header, sep=',')
     return None
 
 def job_scraper(driver):
@@ -166,36 +182,43 @@ def job_scraper(driver):
         print(f"Error: {e}")
     return job_information
 
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-driver = webdriver.Chrome(options=chrome_options)
-driver.maximize_window()
-driver.get('https://www.linkedin.com')
-time.sleep(1)
-
-account = ""
-key = ""
-log_in(driver,account,key)
-
-job_list = ["consulting","data scientist","business analyst","data analyst","marketing","sales","researcher","risk analyst"]
-for job in job_list:
-    page = 1
-    search_jobs(driver,job)
-    time.sleep(5)
-    while True:
-        job_information = job_scraper(driver)
-        if page == 1:
-            write_csv(job_information,job,True)
-        else:
-            write_csv(job_information,job,False)
-        page += 1
-        try:
-            driver.find_element(By.CSS_SELECTOR, f"button[aria-label='Page {page}']").click()
-        except NoSuchElementException:
-            print(f"{job} finished")
-            break
-        except Exception as e:
-            print(f"{job} page {page} ERROE: {e} ")
-            continue
+def job_scraper_all(driver,jobs,account,key,path):
+    driver.get('https://www.linkedin.com')
+    time.sleep(1)
+    log_in(driver,account,key)
+    for job in jobs:
+        page = 1
+        search_jobs(driver,job)
         time.sleep(5)
-    time.sleep(100)
+        while True:
+            job_information = job_scraper(driver)
+            if page == 1:
+                write_csv(job_information,job,True,path)
+            else:
+                write_csv(job_information,job,False,path)
+            page += 1
+            try:
+                driver.find_element(By.CSS_SELECTOR, f"button[aria-label='Page {page}']").click()
+            except NoSuchElementException:
+                print(f"{job} finished")
+                break
+            except Exception as e:
+                print(f"{job} page {page} ERROE: {e} ")
+                continue
+            time.sleep(5)
+        time.sleep(100)
+    driver.close()
+    return None
+
+if __name__ == "__main__":
+    account = ""
+    key = ""
+    path = "/data/rawdata"
+    os.makedirs(path, exist_ok=True)
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.maximize_window()
+    job_list = ["consulting","data scientist","business analyst","data analyst","marketing","sales","researcher","risk analyst"]
+    job_scraper_all(driver,job_list,account=account,key=key,path=path)
+
