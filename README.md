@@ -153,6 +153,61 @@ To generate the word cloud, we first created a dictionary where the keys represe
 
 
 
-### K-mean Analysis for Job Types
+#### K-means Analysis for Job Types
+
+K-means cluster analysis is an unsupervised method that we used to categorize various job types (Data Analyst, Data Scientist, Consulting, etc.) into three skill categories (soft skills, professional skills, coding skills) based on the skills most frequently required.
+
+From this analysis, we can better assist economics students in making informed career choices. By classifying job types, students can select a career path that aligns with their strengths.
+
+#### Methodology for K-means
+
+We used unsupervised machine learning for clustering. First, we tokenized each skill into one of three categories: soft skills, professional skills, and coding skills. Some examples of our tokenization are listed in the table below, and the full tokenization CSV file is included in the results folder. The five most frequently used skills overall were communication, analytical skills, and problem-solving, which we categorized as soft skills.
+
+| Skills  | Skill_Type | Count |
+| ------------- | ------------- |------------- |
+| Communication | Soft | 9385 |
+| Analytical Skill | Soft  | 5136 |
+| Problem Solving | Soft | 4630 |
+| Data Analysis | Professional | 4405 |
+| Microsoft Excel | Coding | 4129 | 
+
+Next, we calculated the number of occurrences of each skill type in each job post. Based on this, we assigned cluster centroids and reran the process multiple times to calculate the SSE (sum of squared errors) and determine the optimal number of clusters. In this case, we selected 5 as the optimal number of clusters.
+
+![elbow method](./results/elbow_method.png){width=50%}
+
+We then clustered each job post into 5 groups and plotted a radar chart of the cluster centers to highlight the differences between them. We also counted the number of job types in each cluster to determine which cluster each job type belongs to.
+
+#### Finding & Analysis
+
+Below is the radar chart of the cluster centers. We can see that Cluster 2 focuses primarily on soft skills (e.g., communication, problem-solving, etc.), Cluster 3 emphasizes professional skills (e.g., economics, mathematics, etc.), and Cluster 0 contains jobs that mostly require coding skills (e.g., SQL, R, etc.).
+
+![cluster Centers Radar Chart](./results/cluster_radar_chart.png){width=50%}
+
+The table below shows the number of job posts in each cluster based on job types and assigns each job type to a specific cluster. From this, we can see that only Cluster 0, Cluster 2, and Cluster 3 have been assigned job types.
+
+| Search_Key       | 0| 1 | 2 | 3 | 4 | Cluster |
+| ---------------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| business analyst | 283 | 290 | 357 | 643 | 295 | 3 |
+| consulting  |306 | 465 | 744 | 477 | 92 | 2 |
+| data analyst | 648 | 51 | 321 | 738 | 537 | 3 |
+| data scientist | 801 | 29 | 108 | 498 | 557 | 0 |
+| marketing | 302 | 409 | 499 | 673 | 35 | 3 |
+| researcher | 548 | 289 | 438 | 575 | 220 | 3 |
+| risk analyst | 480 | 364 | 406 | 653 | 214 | 3 |
+| sales | 131 | 490 | 1114 | 247 | 26 | 2 |
+
+The results of this analysis are largely in line with our expectations. From this analysis, we determined that business analysts belong to Cluster 3, which focuses on professional skills, including knowledge of accounting principles, economics, and mathematics. This suggests that companies expect their business analysts to have a strong background in professional knowledge. Students with high GPAs may have a higher chance of entering the business analyst field.
+
+We also found that careers in consulting predominantly require soft skills, such as communication and problem-solving. This highlights the nature of consulting work, where professionals must communicate effectively with clients and present deliverables clearly.
+
+Lastly, data scientists require the most coding skills compared to other career fields. This suggests that students who want to pursue a career as a data scientist should consider taking additional coding courses. Some of the commonly used programming languages in this field include SQL, R, and Python.
 
 ## Instruction to Rerun
+
+First, ensure that all the packages listed in the requirements.txt file are installed.
+Next, run python code/clean_data.py to generate the cleaned dataset.
+After that, run python code/data_analysis.py to obtain the analysis results.
+Finally, run python code/cluster_prediction.py to produce the K-means clustering results.
+
+All results will be stored in the results folder.
+
