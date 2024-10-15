@@ -10,6 +10,7 @@ from clean_data import  write_csv
 def save_graph(path, name):
     output_path = os.path.join(path, name)
     plt.savefig(output_path)
+    plt.close()
     return None
 
 def count_position(dataframe):
