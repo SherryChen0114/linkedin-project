@@ -106,6 +106,49 @@ def plot_salary_by_work_arrangement(avg_salaries):
     save_graph(OUTPUT_DIR, 'salary_by_work_arrangement.jpg')
 
 
+def clean_skill(skills):
+    cleaned_skill = []
+    if len(str(skills)) > 3:
+        for skill in skills.split(","):
+            skill = skill.strip("[] ").strip("'").lower() 
+            cleaned_skill.append(skill)
+    return cleaned_skill
+
+def get_unique_skill(job, df):
+    if job == "all":
+        all_skills = df["skills"]  
+    else:
+        all_skills = df.loc[df['search_key'] == job, 'skills'] 
+    
+    skill_words = []
+    for skill in all_skills:
+        cleaned_skill = clean_skill(skills=skill)  
+        skill_words.extend(cleaned_skill)  
+    unique_skill_words = set(skill_words) 
+    return unique_skill_words
+
+def get_skill_count(job, df):
+    word_counts = dict()
+    all_skills = df["skills"] if job == "all" else df.loc[df['search_key'] == job, 'skills']
+    for index, row in df.iterrows():  
+        skill_list = clean_skill(row['skills'])
+        for skill in skill_list:
+            word_counts[skill] = word_counts.get(skill, 0) + 1
+    sorted_word_counts = dict(sorted(word_counts.items(), key=lambda x: x[1], reverse=True))
+    return sorted_word_counts
+
+def generate_word_cloud(job,df,output_path):
+    path = os.path.join(output_path, "{}.png".format(job))
+    word_freq = get_skill_count(job, df)
+    wordcloud = WordCloud(width=800, height=400, background_color='white').generate_from_frequencies(word_freq)
+    wordcloud.to_file(path)
+    return None
+
+def generate_all_word_cloud(joblist,df,output_path):
+    for job in joblist:
+        generate_word_cloud(job,df,output_path)
+
+
 
 if __name__ == "__main__":
     DATA_BASE_DIR = "data"
@@ -130,3 +173,7 @@ if __name__ == "__main__":
     avg_salary_by_state = average_salary_by_state(cleaned_data)
     write_csv(os.path.join(OUTPUT_DIR, 'average_salary_by_state.csv'), avg_salary_by_state.reset_index())
     plot_avg_salary_by_state(avg_salary_by_state)
+
+    joblist = ["all","consulting","data scientist","business analyst","data analyst","marketing","sales","researcher","risk analyst"]
+    generate_all_word_cloud(joblist,cleaned_data,OUTPUT_DIR)
+
