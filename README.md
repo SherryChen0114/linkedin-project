@@ -119,15 +119,17 @@ We also analyzed whether work arrangements affected salary levels. The results s
 ## Skill Analysis
 
 ### Skills Word Cloud Based on Job Types
-<p align="center">
-  <figure>
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <div style="margin-right: 20px; text-align: center;">
     <img src="./results/all.png" alt="descriptive" width="45%" />
-    <figcaption>Figure 1: All the Job Type </figcaption>
-  </figure>
-  <figure>
-    <img src="./results/business analyst.png" alt="descriptive2" width="45%" />
+    <figcaption>Figure 1: All the Job Type</figcaption>
+  </div>
+  <div style="text-align: center;">
+    <img src="./results/business%20analyst.png" alt="descriptive2" width="45%" />
     <figcaption>Figure 2: Business Analyst</figcaption>
-  </figure>
+  </div>
+</div>
 
 
 <p align="center">
