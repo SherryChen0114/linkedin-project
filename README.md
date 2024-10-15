@@ -45,7 +45,7 @@ Using our revised dataset along with Pandas and Matplotlib, the results indicate
 | Marketing       | 1918   |
 | Business Analyst| 1868   |   
 
-！[descriptive](./results/search_key_counts.jpg)
+
 
 ## Salary Analysis
 The primary goal of this project was to use the scraped data from LinkedIn to provide economics major students with valuable insights into choosing their careers, job locations.
