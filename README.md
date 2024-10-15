@@ -45,7 +45,7 @@ Using our revised dataset along with Pandas and Matplotlib, the results indicate
 | Marketing       | 1918   |
 | Business Analyst| 1868   |   
 
-
+![Search Key counts](./results/search_key_counts.jpg)
 
 ## Salary Analysis
 The primary goal of this project was to use the scraped data from LinkedIn to provide economics major students with valuable insights into choosing their careers, job locations.
@@ -67,6 +67,8 @@ The results indicated that data scientists had the highest average salary, earni
 | Data Scientist    | 121,267.80      |
 | Marketing         | 82,477.87       |
 | Business Analyst  | 96,346.48       |
+
+![ Average Salary for Different Job Types](./results/average_salary.jpg)
 
 #### Job Locations
 
@@ -100,6 +102,8 @@ When analyzing salaries by state, California (CA) had the highest average salary
 | MS    | 55,000.00        | NE    | 52,833.33       |
 | VT    | 52,760.00        | KS    | 40,250.00       |
 
+![ Average Salary for Different States ](./results/avg_salary_by_state.jpg)
+
 #### Work Arrangement
 
 We also analyzed whether work arrangements affected salary levels. The results suggested that on-site jobs had the lowest average salary at $91,970.53. In contrast, remote and hybrid arrangements showed higher average salaries, with remote jobs averaging $96,039.93 and hybrid jobs averaging $96,368.86. This difference was likely due to companies having lower office-related costs for remote and hybrid jobs.
@@ -109,6 +113,8 @@ We also analyzed whether work arrangements affected salary levels. The results s
 | On-site          | 91,970.53        |
 | Remote           | 96,039.93        |
 | Hybrid           | 96,368.86        |
+
+![ Average Salary for Different Work Arrangement ](./results/salary_by_work_arrangement.jpg)
 
 ## Skill Analysis
 
