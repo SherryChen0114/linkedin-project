@@ -31,9 +31,6 @@ Third, in the salary analysis, we used histograms to represent wage differences 
 
 Lastly, in the cluster analysis, we used the K-means method, but the results were highly dependent on the number of clusters, and some clusters were quite similar. For lower-dimensional feature data, alternative clustering methods may provide better results.
 
-## Salary Analysis
-The primary goal of this project was to use the scraped data from LinkedIn to provide economics major students with valuable insights into choosing their careers, job locations.
-
 ### Descriptive Summary
 Using our revised dataset along with Pandas and Matplotlib, the results indicated that different search keys produced varying numbers of job listings on LinkedIn. The analysis showed that using "data analyst" as the search key yielded the highest search result of 2,295 listings, whereas "business analyst" generated the lowest result of 1,868 listings.
 
@@ -46,7 +43,10 @@ Using our revised dataset along with Pandas and Matplotlib, the results indicate
 | Sales           | 2008   |
 | Data Scientist  | 1993   |
 | Marketing       | 1918   |
-| Business Analyst| 1868   |
+| Business Analyst| 1868   |   ！[descriptive](./results/search_key_counts.jpg)
+
+## Salary Analysis
+The primary goal of this project was to use the scraped data from LinkedIn to provide economics major students with valuable insights into choosing their careers, job locations.
 
 ### Average Salary Analysis
 We divided the salary analysis into three parts to examine how job types, job location (at the state level), and work arrangements influenced salary levels for full-time positions.
