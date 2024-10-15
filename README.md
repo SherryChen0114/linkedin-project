@@ -173,7 +173,7 @@ We used unsupervised machine learning for clustering. First, we tokenized each s
 
 Next, we calculated the number of occurrences of each skill type in each job post. Based on this, we assigned cluster centroids and reran the process multiple times to calculate the SSE (sum of squared errors) and determine the optimal number of clusters. In this case, we selected 5 as the optimal number of clusters.
 
-![elbow method](./results/elbow_method.png){width=50%}
+<img src="./results/elbow_method.png" alt="Graph" width="600" height="600">
 
 We then clustered each job post into 5 groups and plotted a radar chart of the cluster centers to highlight the differences between them. We also counted the number of job types in each cluster to determine which cluster each job type belongs to.
 
@@ -181,7 +181,7 @@ We then clustered each job post into 5 groups and plotted a radar chart of the c
 
 Below is the radar chart of the cluster centers. We can see that Cluster 2 focuses primarily on soft skills (e.g., communication, problem-solving, etc.), Cluster 3 emphasizes professional skills (e.g., economics, mathematics, etc.), and Cluster 0 contains jobs that mostly require coding skills (e.g., SQL, R, etc.).
 
-![cluster Centers Radar Chart](./results/cluster_radar_chart.png){width=50%}
+<img src="./results/cluster_radar_chart.png" alt="Graph" width="600" height="600">
 
 The table below shows the number of job posts in each cluster based on job types and assigns each job type to a specific cluster. From this, we can see that only Cluster 0, Cluster 2, and Cluster 3 have been assigned job types.
 
