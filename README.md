@@ -119,6 +119,31 @@ We also analyzed whether work arrangements affected salary levels. The results s
 ## Skill Analysis
 
 ### Skills Word Cloud Based on Job Types
+<p align="center">
+  <img src="./results/all.png" alt=" Wordcloud for All the Job Type" width="45%" />
+  <img src="./results/business analyst.png" alt="descriptive" width="45%" />
+</p>
+
+<p align="center">
+  <img src="./results/consulting.png" alt=" Wordcloud for All the Job Type" width="45%" />
+  <img src="./results/data analyst.png" alt="descriptive" width="45%" />
+</p>
+
+<p align="center">
+  <img src="./results/data scientist.png" alt=" Wordcloud for All the Job Type" width="45%" />
+  <img src="./results/marketing.png" alt="descriptive" width="45%" />
+</p>
+
+<p align="center">
+  <img src="./results/researcher.png" alt=" Wordcloud for All the Job Type" width="45%" />
+  <img src="./results/risk analyst.png" alt="descriptive" width="45%" />
+</p>
+
+![ Risk Analyst ](./results/risk analyst.png)
+
+To generate the word cloud, we first created a dictionary where the keys represented different job types, and the values were the counts of each job type. We then used the WordCloud package to visualize the word counts.The results suggested that overall, "communication," "analytical skills," and "problem-solving" were the most frequently occurring skills across all job types. The word clouds showed little variation between different job types. Therefore, we further examined the required skill sets for each job by using k-means clustering to determine which job types were associated with specific skill sets.
+
+
 
 ### K-mean Analysis for Job Types
 
