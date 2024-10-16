@@ -32,6 +32,7 @@ Third, in the salary analysis, we used histograms to represent wage differences 
 Lastly, in the cluster analysis, we used the K-means method, but the results were highly dependent on the number of clusters, and some clusters were quite similar. For lower-dimensional feature data, alternative clustering methods may provide better results.
 
 ### Descriptive Summary
+
 Using our revised dataset along with Pandas and Matplotlib, the results indicated that different search keys produced varying numbers of job listings on LinkedIn. The analysis showed that using "data analyst" as the search key yielded the highest search result of 2,295 listings, whereas "business analyst" generated the lowest result of 1,868 listings.
 
 <div align="center">
@@ -52,12 +53,10 @@ Using our revised dataset along with Pandas and Matplotlib, the results indicate
 ![Search Key counts](./results/search_key_counts.jpg)
 
 ## Salary Analysis
-The primary goal of this project was to use the scraped data from LinkedIn to provide economics major students with valuable insights into choosing their careers, job locations.
 
-### Average Salary Analysis
-We divided the salary analysis into three parts to examine how job types, job location (at the state level), and work arrangements influenced salary levels for full-time positions.
+The primary goal of this project was to use the scraped data from LinkedIn to provide economics major students with valuable insights into choosing their careers, job locations. We divided the salary analysis into three parts to examine how job types, job location (at the state level), and work arrangements influenced salary levels for full-time positions.
 
-#### Job Types
+### Job Types
 
 The results indicated that data scientists had the highest average salary, earning $121,267.80, while business analysts had the lowest average salary among the eight job titles commonly searched by economics students. Despite having the lowest salary, business analysts were closely followed by marketing and sales positions, showing little difference in average salary.
 
@@ -78,9 +77,11 @@ The results indicated that data scientists had the highest average salary, earni
 
 ![ Average Salary for Different Job Types](./results/average_salary.jpg)
 
-#### Job Locations
+### Job Locations
 
-When analyzing salaries by state, California (CA) had the highest average salary at $106,932.28, while Kansas (KS) had the lowest at $40,250. Iowa (IA) reported the second-highest average salary at $105,000, which seemed counterintuitive. This may have been due to the limited number of job listings in Iowa, leading to a smaller dataset, or because the jobs listed on LinkedIn for Iowa were predominantly high-paying roles. Incorporating price levels or purchasing power for each state could provide additional context on actual salary levels.
+When analyzing salaries by state, California (CA) had the highest average salary at $106,932.28, while Kansas (KS) had the lowest at $40,250. Iowa (IA) reported the second-highest average salary at $105,000, which seemed counterintuitive. This may have been due to the limited number of job listings in Iowa, leading to a smaller dataset, or because the jobs listed on LinkedIn for Iowa were predominantly high-paying roles. 
+
+To provide a more accurate representation of how salary levels vary by state, it would be ideal to adjust these figures based on the cost of living in each state. Specifically, incorporating the Consumer Price Index (CPI) for each state would allow us to compare real purchasing power across different regions, offering a clearer picture of how far a salary can stretch depending on location. For instance, a salary in a state with a lower CPI might offer greater purchasing power than a seemingly higher salary in a state with a high CPI, such as California.However, due to the lack of readily available data on state-specific CPI and constraints in time, this adjustment was not made in our analysis. Future research or analyses could benefit significantly from including such factors, providing a more nuanced understanding of salary levels and the true economic opportunities available across different states.
 
 <div align="center">
 
@@ -116,9 +117,9 @@ When analyzing salaries by state, California (CA) had the highest average salary
 
 ![ Average Salary for Different States ](./results/avg_salary_by_state.jpg)
 
-#### Work Arrangement
+### Work Arrangement
 
-We also analyzed whether work arrangements affected salary levels. The results suggested that on-site jobs had the lowest average salary at $91,970.53. In contrast, remote and hybrid arrangements showed higher average salaries, with remote jobs averaging $96,039.93 and hybrid jobs averaging $96,368.86. This difference was likely due to companies having lower office-related costs for remote and hybrid jobs.
+We also analyzed whether work arrangements affected salary levels, focusing on the three main types of arrangements: on-site, remote, and hybrid. The results suggested that on-site jobs had the lowest average salary at $91,970.53. In contrast, remote and hybrid work arrangements showed higher average salaries, with remote jobs averaging $96,039.93 and hybrid jobs averaging $96,368.86. This difference could be attributed to several factors. For remote jobs, companies often save on costs related to maintaining office spaces, utilities, and supplies. These savings might enable them to offer more competitive salaries to attract and retain top talent.
 
 <div align="center">
 
@@ -137,6 +138,8 @@ We also analyzed whether work arrangements affected salary levels. The results s
 ## Skill Analysis
 
 ### Skills Word Cloud Based on Job Types
+
+To generate the word cloud, we first created a dictionary where the keys represented different skills required by the job positions listed on LinkedIn, and the values were the counts of each skill. We then used the WordCloud package to visualize the word counts.The results suggested that overall, "communication," "analytical skills," and "problem-solving" were the most frequently occurring skills across all job types. The word clouds showed little variation between different job types. Therefore, we further examined the required skill sets for each job by using k-means clustering to determine which job types were associated with specific skill sets.
 
 <p align="center">
   <strong>Word Cloud 1: All the Job Types</strong>
@@ -160,11 +163,8 @@ We also analyzed whether work arrangements affected salary levels. The results s
 |:-------------------------------:|:------------------------------:|
 | ![Figure 1: All the Job Types](./results/risk%20analyst.png) | ![Figure 2: Business Analyst](./results/sales.png) |
 
-To generate the word cloud, we first created a dictionary where the keys represented different job types, and the values were the counts of each job type. We then used the WordCloud package to visualize the word counts.The results suggested that overall, "communication," "analytical skills," and "problem-solving" were the most frequently occurring skills across all job types. The word clouds showed little variation between different job types. Therefore, we further examined the required skill sets for each job by using k-means clustering to determine which job types were associated with specific skill sets.
 
-
-
-#### K-means Analysis for Job Types
+### K-means Analysis for Job Types
 
 K-means cluster analysis is an unsupervised method that we used to categorize various job types (Data Analyst, Data Scientist, Consulting, etc.) into three skill categories (soft skills, professional skills, coding skills) based on the skills most frequently required.
 
