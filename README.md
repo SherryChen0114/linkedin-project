@@ -34,16 +34,20 @@ Lastly, in the cluster analysis, we used the K-means method, but the results wer
 ### Descriptive Summary
 Using our revised dataset along with Pandas and Matplotlib, the results indicated that different search keys produced varying numbers of job listings on LinkedIn. The analysis showed that using "data analyst" as the search key yielded the highest search result of 2,295 listings, whereas "business analyst" generated the lowest result of 1,868 listings.
 
-| Search Key      | Counts |
-|-----------------|--------|
-| Data Analyst    | 2295   |
-| Risk Analyst    | 2117   |
-| Consulting      | 2084   |
-| Researcher      | 2070   |
-| Sales           | 2008   |
-| Data Scientist  | 1993   |
-| Marketing       | 1918   |
-| Business Analyst| 1868   |   
+<div align="center">
+
+| Search Key       | Counts |
+|:----------------:|:------:|
+| Data Analyst     | 2295   |
+| Risk Analyst     | 2117   |
+| Consulting       | 2084   |
+| Researcher       | 2070   |
+| Sales            | 2008   |
+| Data Scientist   | 1993   |
+| Marketing        | 1918   |
+| Business Analyst | 1868   |
+
+</div>   
 
 ![Search Key counts](./results/search_key_counts.jpg)
 
@@ -57,16 +61,20 @@ We divided the salary analysis into three parts to examine how job types, job lo
 
 The results indicated that data scientists had the highest average salary, earning $121,267.80, while business analysts had the lowest average salary among the eight job titles commonly searched by economics students. Despite having the lowest salary, business analysts were closely followed by marketing and sales positions, showing little difference in average salary.
 
-| Search Key        | Average Salary |
-|-------------------|----------------|
-| Data Analyst      | 81,569.23       |
-| Risk Analyst      | 87,508.73       |
-| Consulting        | 101,753.06      |
-| Researcher        | 112,241.14      |
-| Sales             | 82,339.85       |
-| Data Scientist    | 121,267.80      |
-| Marketing         | 82,477.87       |
-| Business Analyst  | 96,346.48       |
+<div align="center">
+
+| Search Key        | Average Salary  |
+|:-----------------:|:---------------:|
+| Data Analyst      | 81,569.23        |
+| Risk Analyst      | 87,508.73        |
+| Consulting        | 101,753.06       |
+| Researcher        | 112,241.14       |
+| Sales             | 82,339.85        |
+| Data Scientist    | 121,267.80       |
+| Marketing         | 82,477.87        |
+| Business Analyst  | 96,346.48        |
+
+</div>
 
 ![ Average Salary for Different Job Types](./results/average_salary.jpg)
 
@@ -74,8 +82,10 @@ The results indicated that data scientists had the highest average salary, earni
 
 When analyzing salaries by state, California (CA) had the highest average salary at $106,932.28, while Kansas (KS) had the lowest at $40,250. Iowa (IA) reported the second-highest average salary at $105,000, which seemed counterintuitive. This may have been due to the limited number of job listings in Iowa, leading to a smaller dataset, or because the jobs listed on LinkedIn for Iowa were predominantly high-paying roles. Incorporating price levels or purchasing power for each state could provide additional context on actual salary levels.
 
+<div align="center">
+
 | State | Salary (Yearly) | State | Salary (Yearly) |
-|-------|-----------------|-------|-----------------|
+|:-----:|:---------------:|:-----:|:---------------:|
 | CA    | 106,932.28       | ID    | 81,934.67       |
 | IA    | 105,000.00       | RI    | 80,933.33       |
 | MT    | 104,217.89       | PA    | 80,222.64       |
@@ -102,52 +112,53 @@ When analyzing salaries by state, California (CA) had the highest average salary
 | MS    | 55,000.00        | NE    | 52,833.33       |
 | VT    | 52,760.00        | KS    | 40,250.00       |
 
+</div>
+
 ![ Average Salary for Different States ](./results/avg_salary_by_state.jpg)
 
 #### Work Arrangement
 
 We also analyzed whether work arrangements affected salary levels. The results suggested that on-site jobs had the lowest average salary at $91,970.53. In contrast, remote and hybrid arrangements showed higher average salaries, with remote jobs averaging $96,039.93 and hybrid jobs averaging $96,368.86. This difference was likely due to companies having lower office-related costs for remote and hybrid jobs.
 
+<div align="center">
+
 | Work Arrangement | Average Salary  |
-|------------------|-----------------|
+|:----------------:|:---------------:|
 | On-site          | 91,970.53        |
 | Remote           | 96,039.93        |
 | Hybrid           | 96,368.86        |
 
-![ Average Salary for Different Work Arrangement ](./results/salary_by_work_arrangement.jpg)
+</div>
+
+<p align="center">
+  <img src="./results/salary_by_work_arrangement.jpg" alt="Average Salary for Different Work Arrangement" width="600" height="450">
+</p>
 
 ## Skill Analysis
 
 ### Skills Word Cloud Based on Job Types
 
-<div style="display: flex; justify-content: center; align-items: center;">
-  <div style="margin-right: 20px; text-align: center;">
-    <img src="./results/all.png" alt="descriptive" width="45%" />
-    <figcaption>Figure 1: All the Job Type</figcaption>
-  </div>
-  <div style="text-align: center;">
-    <img src="./results/business%20analyst.png" alt="descriptive2" width="45%" />
-    <figcaption>Figure 2: Business Analyst</figcaption>
-  </div>
-</div>
-
-
 <p align="center">
-  <img src="./results/consulting.png" alt=" Wordcloud for All the Job Type" width="45%" />
-  <img src="./results/data analyst.png" alt="descriptive" width="45%" />
+  <strong>Word Cloud 1: All the Job Types</strong>
+  <br>
+  <img src="./results/all.png" alt=" Word Cloud 1: All the Job Types" />
 </p>
 
-<p align="center">
-  <img src="./results/data scientist.png" alt=" Wordcloud for All the Job Type" width="45%" />
-  <img src="./results/marketing.png" alt="descriptive" width="45%" />
-</p>
+| **Word Cloud 2: Business Analyst** | **Word Cloud 3: Consulting** |
+|:-------------------------------:|:------------------------------:|
+| ![Figure 1: All the Job Types](./results/business%20analyst.png) | ![Figure 2: Business Analyst](./results/consulting.png) |
 
-<p align="center">
-  <img src="./results/researcher.png" alt=" Wordcloud for All the Job Type" width="45%" />
-  <img src="./results/risk analyst.png" alt="descriptive" width="45%" />
-</p>
+| **Word Cloud 4: Data Analyst** | **Word Cloud 5: Data Scientist** |
+|:-------------------------------:|:------------------------------:|
+| ![Figure 1: All the Job Types](./results/data%20analyst.png) | ![Figure 2: Business Analyst](./results/data%20scientist.png) |
 
-![ Risk Analyst ](./results/risk analyst.png)
+| **Word Cloud 6: Marketing** | **Word Cloud 7: Researcher** |
+|:-------------------------------:|:------------------------------:|
+| ![Figure 1: All the Job Types](./results/marketing.png) | ![Figure 2: Business Analyst](./results/researcher.png) |
+
+| **Word Cloud 8: Risk Analyst** | **Word Cloud 9: Sales** |
+|:-------------------------------:|:------------------------------:|
+| ![Figure 1: All the Job Types](./results/risk%20analyst.png) | ![Figure 2: Business Analyst](./results/sales.png) |
 
 To generate the word cloud, we first created a dictionary where the keys represented different job types, and the values were the counts of each job type. We then used the WordCloud package to visualize the word counts.The results suggested that overall, "communication," "analytical skills," and "problem-solving" were the most frequently occurring skills across all job types. The word clouds showed little variation between different job types. Therefore, we further examined the required skill sets for each job by using k-means clustering to determine which job types were associated with specific skill sets.
 
@@ -163,17 +174,23 @@ From this analysis, we can better assist economics students in making informed c
 
 We used unsupervised machine learning for clustering. First, we tokenized each skill into one of three categories: soft skills, professional skills, and coding skills. Some examples of our tokenization are listed in the table below, and the full tokenization CSV file is included in the results folder. The five most frequently used skills overall were communication, analytical skills, and problem-solving, which we categorized as soft skills.
 
-| Skills  | Skill_Type | Count |
-| ------------- | ------------- |------------- |
-| Communication | Soft | 9385 |
-| Analytical Skill | Soft  | 5136 |
-| Problem Solving | Soft | 4630 |
-| Data Analysis | Professional | 4405 |
-| Microsoft Excel | Coding | 4129 | 
+<div align="center">
+
+| Skills           | Skill_Type     | Count |
+|:----------------:|:--------------:|:-----:|
+| Communication    | Soft           | 9385  |
+| Analytical Skill | Soft           | 5136  |
+| Problem Solving  | Soft           | 4630  |
+| Data Analysis    | Professional   | 4405  |
+| Microsoft Excel  | Coding         | 4129  |
+
+</div>
 
 Next, we calculated the number of occurrences of each skill type in each job post. Based on this, we assigned cluster centroids and reran the process multiple times to calculate the SSE (sum of squared errors) and determine the optimal number of clusters. In this case, we selected 5 as the optimal number of clusters.
 
-<img src="./results/elbow_method.png" alt="Graph" width="600" height="600">
+<p align="center">
+  <img src="./results/elbow_method.png" alt="Graph" width="600" height="400">
+</p>
 
 We then clustered each job post into 5 groups and plotted a radar chart of the cluster centers to highlight the differences between them. We also counted the number of job types in each cluster to determine which cluster each job type belongs to.
 
@@ -181,20 +198,26 @@ We then clustered each job post into 5 groups and plotted a radar chart of the c
 
 Below is the radar chart of the cluster centers. We can see that Cluster 2 focuses primarily on soft skills (e.g., communication, problem-solving, etc.), Cluster 3 emphasizes professional skills (e.g., economics, mathematics, etc.), and Cluster 0 contains jobs that mostly require coding skills (e.g., SQL, R, etc.).
 
-<img src="./results/cluster_radar_chart.png" alt="Graph" width="600" height="600">
+<p align="center">
+  <img src="./results/cluster_radar_chart.png" alt="Graph" width="600" height="600">
+</p>
 
 The table below shows the number of job posts in each cluster based on job types and assigns each job type to a specific cluster. From this, we can see that only Cluster 0, Cluster 2, and Cluster 3 have been assigned job types.
 
-| Search_Key       | 0| 1 | 2 | 3 | 4 | Cluster |
-| ---------------- | ------- | ------- | ------- | ------- | ------- | ------- |
-| business analyst | 283 | 290 | 357 | 643 | 295 | 3 |
-| consulting  |306 | 465 | 744 | 477 | 92 | 2 |
-| data analyst | 648 | 51 | 321 | 738 | 537 | 3 |
-| data scientist | 801 | 29 | 108 | 498 | 557 | 0 |
-| marketing | 302 | 409 | 499 | 673 | 35 | 3 |
-| researcher | 548 | 289 | 438 | 575 | 220 | 3 |
-| risk analyst | 480 | 364 | 406 | 653 | 214 | 3 |
-| sales | 131 | 490 | 1114 | 247 | 26 | 2 |
+<div align="center">
+
+| Search_Key       | 0     | 1     | 2     | 3     | 4     | Cluster |
+|:----------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-------:|
+| business analyst | 283   | 290   | 357   | 643   | 295   | 3       |
+| consulting       | 306   | 465   | 744   | 477   | 92    | 2       |
+| data analyst     | 648   | 51    | 321   | 738   | 537   | 3       |
+| data scientist   | 801   | 29    | 108   | 498   | 557   | 0       |
+| marketing        | 302   | 409   | 499   | 673   | 35    | 3       |
+| researcher       | 548   | 289   | 438   | 575   | 220   | 3       |
+| risk analyst     | 480   | 364   | 406   | 653   | 214   | 3       |
+| sales            | 131   | 490   | 1114  | 247   | 26    | 2       |
+
+</div>
 
 The results of this analysis are largely in line with our expectations. From this analysis, we determined that business analysts belong to Cluster 3, which focuses on professional skills, including knowledge of accounting principles, economics, and mathematics. This suggests that companies expect their business analysts to have a strong background in professional knowledge. Students with high GPAs may have a higher chance of entering the business analyst field.
 
