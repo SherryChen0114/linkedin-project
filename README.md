@@ -64,14 +64,15 @@ The results indicated that data scientists had the highest average salary, earni
 
 | Search Key        | Average Salary  |
 |:-----------------:|:---------------:|
-| Data Analyst      | 81,569.23        |
-| Risk Analyst      | 87,508.73        |
-| Consulting        | 101,753.06       |
-| Researcher        | 112,241.14       |
-| Sales             | 82,339.85        |
-| Data Scientist    | 121,267.80       |
-| Marketing         | 82,477.87        |
-| Business Analyst  | 96,346.48        |
+| Data Scientist    | 121,267.80      |
+| Researcher        | 112,241.14      |
+| Consulting        | 101,753.06      |
+| Data Analyst      | 96,346.48       |
+| Risk Analyst      | 87,508.73       |
+| Marketing         | 82,477.87       |
+| Sales             | 82,339.85       |
+| Business Analyst  | 81,569.23       |
+
 
 </div>
 
