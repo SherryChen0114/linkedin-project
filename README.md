@@ -1,4 +1,4 @@
-# Analysis of Wage and Skills set of Economics Major careeer choice from LinkedIn Job Post
+# Wage and Skill Analysis of Economics Major Career Choices from LinkedIn Jobs
 
 ## Data  
 
