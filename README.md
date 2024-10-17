@@ -1,4 +1,4 @@
-# Case Study of LinkedIn Job Post for Economics Major
+# Analysis of Wage and Skills set of Economics Major careeer choice from LinkedIn Job Post
 
 ## Data  
 
