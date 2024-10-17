@@ -227,6 +227,8 @@ Lastly, data scientists require the most coding skills compared to other career 
 
 ## Instruction to Rerun
 
+### Analysis code
+
 First, ensure that all the packages listed in the requirements.txt file are installed.
 Next, run python code/clean_data.py to generate the cleaned dataset.
 After that, run python code/data_analysis.py to obtain the analysis results.
@@ -234,3 +236,6 @@ Finally, run python code/cluster_prediction.py to produce the K-means clustering
 
 All results will be stored in the results folder.
 
+### Scrape code
+
+Running the scrape code takes a long time, approximately 18 hours. We have already uploaded the data to GitHub, located in the 'data/rawdata' folder. If you need to run the web scraping code, there may be unexpected errors such as browser freezing or network delays. In such cases, you will need to resume the process from the current search_key.
