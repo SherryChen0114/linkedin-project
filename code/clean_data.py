@@ -5,6 +5,7 @@ import ast
 import re 
 
 def data_merge(job_list):
+    """This function is used to merge data."""
     dfs = []
     for file in job_list :
         df = pd.read_csv(file)
@@ -16,11 +17,12 @@ def data_merge(job_list):
     return merged_df
  
 def location(df):
+    """This function is used to process the location variable in the raw file."""
     df[['city', 'state']] = df['location'].str.extract(r'([^,]+),?\s*([^,]*)')
     return df 
 
 def others(others_str):
-    # this function try to change 
+    """This function is used to process the others variable in the raw file."""
     try: 
         other_lists = ast.literal_eval(others_str) # change string to a list
     
@@ -35,7 +37,8 @@ def others(others_str):
     except (ValueError, SyntaxError):
         return others_str 
 
-def check_keywords (other_lists):    
+def check_keywords (other_lists):
+    """This function is used to extract keywords from the others variable in the raw file and generate a series of dummy variables."""    
         Internship_flag = 0
         on_site_flag = 0
         remote_flag = 0
@@ -62,9 +65,11 @@ def check_keywords (other_lists):
             return 0,0,0,0,0,0
 
 def write_csv (path,dataframe):
+    """This function is used to write data into a CSV file."""
     dataframe.to_csv(path, mode='w+', index=False,encoding='utf-8')
 
 def get_salary(dataframe):
+    """This function is used to process the salary variable in the raw data."""
     salaries = dataframe["salary"]
     salary_yr = []
     for salary in salaries:
@@ -84,6 +89,7 @@ def get_salary(dataframe):
     return dataframe
 
 def data_clean(files):
+    """This function is primarily used to execute the entire data cleaning process."""
     raw_csv = data_merge(files)
     change_location = location(raw_csv)
     cleaned_data = get_salary(change_location)

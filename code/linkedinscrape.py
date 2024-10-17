@@ -17,6 +17,7 @@ from selenium.common.exceptions import ElementClickInterceptedException
 
 
 def log_in(driver,account,key):
+    """This function is used to log in to a LinkedIn account."""
     try:
         driver.find_element(By.CSS_SELECTOR, "body > nav > div > a.nav__button-secondary.btn-secondary-emphasis.btn-md").click()
         pass
@@ -33,6 +34,7 @@ def log_in(driver,account,key):
     return None
 
 def search_jobs(driver,job):
+    """This function is used to simulate a browser search for a specific search_key."""
     driver.find_element(By.CSS_SELECTOR, "#global-nav > div > nav > ul > li:nth-child(3) > a > div > div > li-icon > svg > path").click()
     time.sleep(1)
     search_area = WebDriverWait(driver, 10).until(
@@ -44,6 +46,7 @@ def search_jobs(driver,job):
     return None
 
 def get_job_detail(driver, job_element):
+    """This function is used to retrieve summary information for all jobs on a single page."""
     job_detail1 = []
     job_detail2 = []
     try:
@@ -69,6 +72,7 @@ def get_job_detail(driver, job_element):
     return job_detail1, job_detail2
 
 def get_job_skills_salary(driver,job_element):
+    """This function is used to click into each job's specific page to retrieve detailed job information."""
     skills = []
     try:
         shortskill = WebDriverWait(driver, 10).until(
@@ -115,12 +119,14 @@ def get_job_skills_salary(driver,job_element):
     return skills, job_salary
 
 def write_csv(data, job, header, path):
+    """This function is used to write data into a CSV file."""
     data.insert(loc=0, column='search_key', value=job)
     file_path = os.path.join(path, "{}.csv".format(job))
     data.to_csv(file_path, mode='a+', index=False, header=header, sep=',')
     return None
 
 def job_scraper(driver):
+    """This function is used to scrape both the summary and detailed information for all jobs on a single page."""
     job_information = pd.DataFrame()
     jobs_and_companies_list = []
     jobs_details = []
@@ -183,6 +189,7 @@ def job_scraper(driver):
     return job_information
 
 def job_scraper_all(driver,jobs,account,key,path):
+    """This function is used to scrape all pages for all jobs listed in the joblist."""
     driver.get('https://www.linkedin.com')
     time.sleep(1)
     log_in(driver,account,key)
