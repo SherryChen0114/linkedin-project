@@ -8,22 +8,19 @@ from clean_data import data_clean
 from clean_data import  write_csv
 
 def save_graph(path, name):
+    """This function is used to save images to a specified path."""
     output_path = os.path.join(path, name)
     plt.savefig(output_path)
     plt.close()
     return None
 
 def count_position(dataframe):
-    '''
-    Count the occurrences of different search_key values (jon title)
-    '''
+    """Count the occurrences of different search_key values (jon title)"""
     search_key_counts = dataframe['search_key'].value_counts()
     return search_key_counts
 
 def plot_search_key_counts(search_key_counts):
-    '''
-    Plot the bar chart for search results in different job positions
-    ''' 
+    """Plot the bar chart for search results in different job positions"""
     search_key_counts.plot(kind='bar', figsize=(10, 6))
     plt.title('Count of Different Positions (search_key)')
     plt.xlabel('Job_Position')
@@ -33,9 +30,7 @@ def plot_search_key_counts(search_key_counts):
     save_graph(OUTPUT_DIR, 'search_key_counts.jpg') 
 
 def job_ave_salary (dataframe):
-    '''
-    Filter out rows: salary_yr is 0 or internship_flag is 1
-    '''
+    """Filter out rows: salary_yr is 0 or internship_flag is 1"""
     dataframe['salary_yr'] = dataframe['salary_yr'].astype(str)
     dataframe['salary_yr'] = dataframe['salary_yr'].str.replace(',', '', regex=True)
     dataframe['salary_yr'] = pd.to_numeric(dataframe['salary_yr'])
@@ -45,9 +40,7 @@ def job_ave_salary (dataframe):
     return average_salary
 
 def plot_average_salary(average_salary):
-    '''
-    Plot the bar chart for average salary
-    '''
+    """Plot the bar chart for average salary"""
     average_salary.plot(kind='bar', figsize=(10, 6))
     plt.title('Average Yearly Salary for Each Full-time Job Position')
     plt.xlabel('Job_Position')
@@ -57,10 +50,12 @@ def plot_average_salary(average_salary):
     save_graph(OUTPUT_DIR, 'average_salary.jpg') 
 
 def is_valid_state(state):
+    """This function is used to determine whether the values under the state variable are valid."""
     pattern = r'^[A-Z]{2}$'
     return bool(re.match(pattern, state))
 
 def average_salary_by_state(dataframe):
+    """This function is used to calculate the average salary for each state."""
     dataframe['salary_yr'] = dataframe['salary_yr'].astype(str)
     dataframe['salary_yr'] = dataframe['salary_yr'].str.replace(',', '', regex=True)
     dataframe['salary_yr'] = pd.to_numeric(dataframe['salary_yr'])
@@ -71,6 +66,7 @@ def average_salary_by_state(dataframe):
     return avg_salary_by_state
 
 def plot_avg_salary_by_state(avg_salary_by_state):
+    """This function is used to plot the average salary data for each state."""
     avg_salary_by_state.plot(kind='bar', figsize=(12, 6), color='skyblue')
     plt.title('Average Full-Time Salary by State')
     plt.xlabel('State')
@@ -80,6 +76,7 @@ def plot_avg_salary_by_state(avg_salary_by_state):
     save_graph(OUTPUT_DIR, 'avg_salary_by_state.jpg')
 
 def ave_salary_by_work_arrangement(dataframe):
+    """This function is used to calculate the average salary for each work arrangement."""
     dataframe['salary_yr'] = dataframe['salary_yr'].astype(str)
     dataframe['salary_yr'] = dataframe['salary_yr'].str.replace(',', '', regex=True)
     dataframe['salary_yr'] = pd.to_numeric(dataframe['salary_yr'])
@@ -96,6 +93,7 @@ def ave_salary_by_work_arrangement(dataframe):
     return avg_salaries_df
 
 def plot_salary_by_work_arrangement(avg_salaries):
+    """This function is used to plot the average salary data for each work arrangement."""
     labels = avg_salaries['Work Arrangement']
     salaries = avg_salaries['Average Salary']
 
@@ -108,6 +106,7 @@ def plot_salary_by_work_arrangement(avg_salaries):
 
 
 def clean_skill(skills):
+    """This function is used to clean the skill data."""
     cleaned_skill = []
     if len(str(skills)) > 3:
         for skill in skills.split(","):
@@ -116,6 +115,7 @@ def clean_skill(skills):
     return cleaned_skill
 
 def get_unique_skill(job, df):
+    """This function is used to extract unique skill terms from the skill data."""
     if job == "all":
         all_skills = df["skills"]  
     else:
@@ -129,6 +129,7 @@ def get_unique_skill(job, df):
     return unique_skill_words
 
 def get_skill_count(job, df):
+    """This function is used to count the frequency of each skill term's occurrence."""
     word_counts = dict()
     all_skills = df["skills"] if job == "all" else df.loc[df['search_key'] == job, 'skills']
     for index, row in df.iterrows():  
@@ -139,6 +140,7 @@ def get_skill_count(job, df):
     return sorted_word_counts
 
 def generate_word_cloud(job,df,output_path):
+    """This function is used to generate a word cloud for a single job."""
     path = os.path.join(output_path, "{}.png".format(job))
     word_freq = get_skill_count(job, df)
     wordcloud = WordCloud(width=800, height=400, background_color='white').generate_from_frequencies(word_freq)
@@ -146,6 +148,7 @@ def generate_word_cloud(job,df,output_path):
     return None
 
 def generate_all_word_cloud(joblist,df,output_path):
+    """This function is used to generate a word cloud for all jobs."""
     for job in joblist:
         generate_word_cloud(job,df,output_path)
 

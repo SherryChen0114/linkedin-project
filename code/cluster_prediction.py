@@ -13,6 +13,7 @@ from data_analysis import get_skill_count
 from data_analysis import clean_skill
 
 def write_dic_to_csv(path,dic):
+    """This function is used to write dictionary data into a CSV file."""
     with open(path, mode='w+', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["skills", "count"])
@@ -20,10 +21,12 @@ def write_dic_to_csv(path,dic):
             writer.writerow([key, value])
 
 def read_classified_skills(name):
+    """This function reads a file with categorized skill terms into Python."""
     df = pd.read_csv(name)
     return df
 
 def classify_skills(skills):
+    """This function is used to retrieve the count of each type of skill for every job position."""
     professional_count = 0
     soft_count = 0
     coding_count = 0
@@ -40,12 +43,14 @@ def classify_skills(skills):
     return professional_count, soft_count, coding_count
 
 def generate_classify_variables(based_df,classify_df):
+    """This function is used to count the number of each type of skill across all job positions."""
     df = based_df
     skill_type_mapping = classify_df.set_index('skills')['skill_type'].to_dict()
     df[['professional', 'soft', 'coding']] = based_df['skills'].apply(lambda x: pd.Series(classify_skills(x)))
     return df
 
 def decide_clustering_num(features,output_path):
+    """This function is used to determine the number of clusters for k-means using the elbow method."""
     path = os.path.join(output_path, "elbow_method.png")
     SSE = []
     k_list = range(1,15)
@@ -60,6 +65,7 @@ def decide_clustering_num(features,output_path):
     return None
 
 def radar_chart(centers, output_path, dimensions):
+    """This function is used to generate radar charts for the centers of each cluster."""
     num_clusters = centers.shape[0]
     num_dimensions = centers.shape[1]
     angles = [n / float(num_dimensions) * 2 * pi for n in range(num_dimensions)]
@@ -80,6 +86,7 @@ def radar_chart(centers, output_path, dimensions):
     return None
 
 def find_major_cluster_per_search_key(df):
+    """This function is used to count the number of job positions in each cluster under each search_key."""
     cluster_distribution = df.groupby(['search_key', 'cluster']).size().unstack(fill_value=0)
     major_clusters = cluster_distribution.idxmax(axis=1)
     result_df = cluster_distribution.copy()
@@ -88,6 +95,7 @@ def find_major_cluster_per_search_key(df):
     return result_df
 
 def k_means_analysis(df,output_path):
+    """This function is used to run k-means analysis and generate the results."""
     features = df[['professional', 'soft', 'coding']]
     features = StandardScaler().fit_transform(features)
     decide_clustering_num(features,output_path)
